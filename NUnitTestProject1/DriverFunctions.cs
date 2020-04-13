@@ -23,6 +23,25 @@ namespace NUnitTestProject1
                 }
             } while (iterationCount > 0);
         }
+
+        public static int CountOfElements(IWebDriver driver, string selector)
+        {
+            int count = -1;
+            int iterationCount = 2;
+            do
+            {
+                try
+                {
+                    count = driver.FindElements(By.CssSelector(selector)).Count;
+                    iterationCount = 0;
+                }
+                catch
+                {
+                    iterationCount--;
+                }
+            } while (iterationCount > 0);
+            return count;
+        }
         public static void SetWebElementByCssSelector(IWebDriver driver, string selector, ref IWebElement webElement)
         {
             webElement = null;

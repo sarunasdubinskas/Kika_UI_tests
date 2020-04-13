@@ -17,6 +17,7 @@ namespace NUnitTestProject1
         private const string searchParam = "maistas";
         private const string mainTitle = "KIKA – žinomiausias gyvūnų prekių parduotuvių tinklas Lietuvoje";
 
+        private int tempInt = 0;
         private IWebElement webElement;
 
         [SetUp]
@@ -99,6 +100,10 @@ namespace NUnitTestProject1
             DriverFunctions.DoClickWhile(driver, $".product_listing .product_element .btn.btn-primary");
 
             DriverFunctions.DoClickWhile(driver, $"#cart_info a");
+
+            tempInt = DriverFunctions.CountOfElements(driver, "#cart_items .item");
+            Assert.Greater(tempInt, 0, "Incorrect basket items count. Expected at least one item");
+
             DriverFunctions.DoClickWhile(driver, $"#cart_items .remove a");
 
             DriverFunctions.DoClickWhile(driver, $"#profile_menu .title");
